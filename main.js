@@ -1,9 +1,9 @@
 'use strict';
 
-let gl;                         // The webgl context.
-let surface;                    // A surface model
-let shProgram;                  // A shader program
-let spaceball;                  // A SimpleRotator object that lets the user rotate the view by mouse.
+let gl;                         
+let surface;                    
+let shProgram;                  
+let spaceball;                  
 let userPointCoord;
 let userRotAngle;
 let sphere
@@ -13,7 +13,6 @@ function deg2rad(angle) {
 }
 
 
-// Constructor
 function Model(name) {
     this.name = name;
     this.iVertexBuffer = gl.createBuffer();
@@ -306,7 +305,7 @@ function init() {
         return;
     }
     try {
-        initGL();  // initialize the WebGL graphics context
+        initGL();
     }
     catch (e) {
         document.getElementById("canvas-holder").innerHTML =
@@ -317,7 +316,6 @@ function init() {
     spaceball = new TrackballRotator(canvas, draw, 0);
 
     draw();
-    // window.requestAnimationFrame(draw_);
 }
 
 function mat4Transpose(a, transposed) {
@@ -372,7 +370,6 @@ function mat4Invert(m, inverse) {
 }
 
 window.onkeydown = (e) => {
-    // console.log(e.keyCode)
     switch (e.keyCode) {
         case 87:
             userPointCoord.x -= 0.01;
@@ -389,7 +386,6 @@ window.onkeydown = (e) => {
     }
     userPointCoord.x = Math.max(0.001, Math.min(userPointCoord.x, 0.999))
     userPointCoord.y = Math.max(0.001, Math.min(userPointCoord.y, 0.999))
-    // console.log(userPointCoord);
     draw();
 }
 
@@ -399,11 +395,9 @@ function LoadTexture() {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
 
-    // gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 512, 512, 0, );
-
     const image = new Image();
     image.crossOrigin = 'anonymus';
-    image.src = "https://raw.githubusercontent.com/gassniffer8/university/CGW/Polished_metal_texture.jpeg";
+    image.src = "https://raw.githubusercontent.com/usatenkodev/CGWv24/main/grass.jpg";
     image.onload = () => {
         gl.bindTexture(gl.TEXTURE_2D, texture);
         gl.texImage2D(
